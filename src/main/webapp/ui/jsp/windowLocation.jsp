@@ -3,9 +3,18 @@
 <head>
     <title>Web Server Mock</title>
 </head>
-<script>
-    window.location = "/redirect/javascript/?redirectsNumber=${redirectsNumber}&redirectId=${redirectId}";
-</script>
+<c:choose>
+    <c:when test="${empty timeoutMillis}">
+        <script>
+            window.location = "/redirect/javascript/?redirectsNumber=${redirectsNumber}&redirectId=${redirectId}";
+        </script>
+    </c:when>
+    <c:otherwise>
+        <script>
+            window.setTimeout(function(){ window.location = "/redirect/javascript/?redirectsNumber=${redirectsNumber}&redirectId=${redirectId}"; }, ${timeoutMillis});
+        </script>
+    </c:otherwise>
+</c:choose>
 <div>
     performing redirect ${redirectId}
 </div>

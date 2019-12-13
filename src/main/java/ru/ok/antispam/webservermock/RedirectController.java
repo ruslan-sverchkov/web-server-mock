@@ -30,19 +30,11 @@ public class RedirectController {
             redirectId = 0;
         }
         if (redirectId < redirectsNumber) {
-            if (timeoutMillis == null) {
-                ModelAndView modelAndView = new ModelAndView("windowLocation");
-                modelAndView.addObject("redirectsNumber", redirectsNumber);
-                modelAndView.addObject("redirectId", redirectId + 1);
-                return modelAndView;
-            } else {
-                ModelAndView modelAndView = new ModelAndView("windowLocationTimeout");
-                modelAndView.addObject("redirectsNumber", redirectsNumber);
-                modelAndView.addObject("redirectId", redirectId + 1);
-                modelAndView.addObject("timeoutMillis", timeoutMillis);
-                return modelAndView;
-            }
-
+            ModelAndView modelAndView = new ModelAndView("windowLocation");
+            modelAndView.addObject("redirectsNumber", redirectsNumber);
+            modelAndView.addObject("redirectId", redirectId + 1);
+            modelAndView.addObject("timeoutMillis", timeoutMillis);
+            return modelAndView;
         }
         ModelAndView modelAndView = new ModelAndView("redirectCompleted");
         modelAndView.addObject("redirects", redirectsNumber);
