@@ -11,7 +11,7 @@
     </c:when>
     <c:otherwise>
         <script>
-            window.setTimeout(function(){ window.location = "/redirect/javascript/?redirectsNumber=${redirectsNumber}&redirectId=${redirectId}"; }, ${timeoutMillis});
+            window.setTimeout(function(){ window.location = "/redirect/javascript/?redirectsNumber=${redirectsNumber}&timeoutMillis=${timeoutMillis}&redirectId=${redirectId}"; }, ${timeoutMillis});
         </script>
     </c:otherwise>
 </c:choose>
