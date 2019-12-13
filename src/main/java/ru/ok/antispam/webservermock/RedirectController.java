@@ -24,15 +24,25 @@ public class RedirectController {
     @RequestMapping(value = "/redirect/javascript", method = RequestMethod.GET)
     public ModelAndView performJavascriptRedirect(@RequestParam(value = "redirectId", required = false) Integer redirectId,
                                                   @RequestParam(value = "redirectsNumber") int redirectsNumber,
+                                                  @RequestParam(value = "redirectId", required = false) Integer timeoutMillis,
                                                   RedirectAttributes redirectAttributes) throws InterruptedException {
         if (redirectId == null) {
             redirectId = 0;
         }
         if (redirectId < redirectsNumber) {
-            ModelAndView modelAndView = new ModelAndView("javascriptRedirect");
-            modelAndView.addObject("redirectsNumber", redirectsNumber);
-            modelAndView.addObject("redirectId", redirectId + 1);
-            return modelAndView;
+            if (timeoutMillis == null) {
+                ModelAndView modelAndView = new ModelAndView("windowLocation");
+                modelAndView.addObject("redirectsNumber", redirectsNumber);
+                modelAndView.addObject("redirectId", redirectId + 1);
+                return modelAndView;
+            } else {
+                ModelAndView modelAndView = new ModelAndView("windowLocationTimeout");
+                modelAndView.addObject("redirectsNumber", redirectsNumber);
+                modelAndView.addObject("redirectId", redirectId + 1);
+                modelAndView.addObject("timeoutMillis", timeoutMillis);
+                return modelAndView;
+            }
+
         }
         ModelAndView modelAndView = new ModelAndView("redirectCompleted");
         modelAndView.addObject("redirects", redirectsNumber);
