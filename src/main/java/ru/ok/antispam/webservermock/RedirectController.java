@@ -19,7 +19,7 @@ public class RedirectController {
         return model;
     }
 
-    @RequestMapping(value = "/redirect/windowLocation", method = RequestMethod.GET)
+    @RequestMapping(value = "/redirect/window/location", method = RequestMethod.GET)
     public ModelAndView windowLocation(@RequestParam(value = "redirectId", required = false) Integer redirectId,
                                        @RequestParam(value = "redirectsNumber") int redirectsNumber,
                                        @RequestParam(value = "timeoutMillis", required = false) Integer timeoutMillis,
@@ -27,12 +27,28 @@ public class RedirectController {
         return javascriptRedirect(redirectId, redirectsNumber, timeoutMillis, "windowLocation");
     }
 
-    @RequestMapping(value = "/redirect/documentLocation", method = RequestMethod.GET)
+    @RequestMapping(value = "/redirect/window/location/href", method = RequestMethod.GET)
+    public ModelAndView windowLocationHref(@RequestParam(value = "redirectId", required = false) Integer redirectId,
+                                       @RequestParam(value = "redirectsNumber") int redirectsNumber,
+                                       @RequestParam(value = "timeoutMillis", required = false) Integer timeoutMillis,
+                                       RedirectAttributes redirectAttributes) throws InterruptedException {
+        return javascriptRedirect(redirectId, redirectsNumber, timeoutMillis, "windowLocationHref");
+    }
+
+    @RequestMapping(value = "/redirect/document/location", method = RequestMethod.GET)
     public ModelAndView documentLocation(@RequestParam(value = "redirectId", required = false) Integer redirectId,
                                          @RequestParam(value = "redirectsNumber") int redirectsNumber,
                                          @RequestParam(value = "timeoutMillis", required = false) Integer timeoutMillis,
                                          RedirectAttributes redirectAttributes) throws InterruptedException {
         return javascriptRedirect(redirectId, redirectsNumber, timeoutMillis, "documentLocation");
+    }
+
+    @RequestMapping(value = "/redirect/document/location/href", method = RequestMethod.GET)
+    public ModelAndView documentLocationHref(@RequestParam(value = "redirectId", required = false) Integer redirectId,
+                                         @RequestParam(value = "redirectsNumber") int redirectsNumber,
+                                         @RequestParam(value = "timeoutMillis", required = false) Integer timeoutMillis,
+                                         RedirectAttributes redirectAttributes) throws InterruptedException {
+        return javascriptRedirect(redirectId, redirectsNumber, timeoutMillis, "documentLocationHref");
     }
 
     private ModelAndView javascriptRedirect(Integer redirectId,
