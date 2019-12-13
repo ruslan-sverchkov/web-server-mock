@@ -1,13 +1,11 @@
 package ru.ok.antispam.webservermock;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -22,15 +20,30 @@ public class RedirectController {
     }
 
     @RequestMapping(value = "/redirect/windowLocation", method = RequestMethod.GET)
-    public ModelAndView performJavascriptRedirect(@RequestParam(value = "redirectId", required = false) Integer redirectId,
-                                                  @RequestParam(value = "redirectsNumber") int redirectsNumber,
-                                                  @RequestParam(value = "timeoutMillis", required = false) Integer timeoutMillis,
-                                                  RedirectAttributes redirectAttributes) throws InterruptedException {
+    public ModelAndView windowLocation(@RequestParam(value = "redirectId", required = false) Integer redirectId,
+                                       @RequestParam(value = "redirectsNumber") int redirectsNumber,
+                                       @RequestParam(value = "timeoutMillis", required = false) Integer timeoutMillis,
+                                       RedirectAttributes redirectAttributes) throws InterruptedException {
+        return javascriptRedirect(redirectId, redirectsNumber, timeoutMillis, "windowLocation");
+    }
+
+    @RequestMapping(value = "/redirect/documentLocation", method = RequestMethod.GET)
+    public ModelAndView documentLocation(@RequestParam(value = "redirectId", required = false) Integer redirectId,
+                                         @RequestParam(value = "redirectsNumber") int redirectsNumber,
+                                         @RequestParam(value = "timeoutMillis", required = false) Integer timeoutMillis,
+                                         RedirectAttributes redirectAttributes) throws InterruptedException {
+        return javascriptRedirect(redirectId, redirectsNumber, timeoutMillis, "documentLocation");
+    }
+
+    private ModelAndView javascriptRedirect(Integer redirectId,
+                                            int redirectsNumber,
+                                            Integer timeoutMillis,
+                                            String documentLocation) {
         if (redirectId == null) {
             redirectId = 0;
         }
         if (redirectId < redirectsNumber) {
-            ModelAndView modelAndView = new ModelAndView("windowLocation");
+            ModelAndView modelAndView = new ModelAndView(documentLocation);
             modelAndView.addObject("redirectsNumber", redirectsNumber);
             modelAndView.addObject("redirectId", redirectId + 1);
             modelAndView.addObject("timeoutMillis", timeoutMillis);
