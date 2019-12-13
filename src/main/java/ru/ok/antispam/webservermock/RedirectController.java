@@ -29,10 +29,18 @@ public class RedirectController {
 
     @RequestMapping(value = "/redirect/window/location/href", method = RequestMethod.GET)
     public ModelAndView windowLocationHref(@RequestParam(value = "redirectId", required = false) Integer redirectId,
-                                       @RequestParam(value = "redirectsNumber") int redirectsNumber,
-                                       @RequestParam(value = "timeoutMillis", required = false) Integer timeoutMillis,
-                                       RedirectAttributes redirectAttributes) throws InterruptedException {
+                                           @RequestParam(value = "redirectsNumber") int redirectsNumber,
+                                           @RequestParam(value = "timeoutMillis", required = false) Integer timeoutMillis,
+                                           RedirectAttributes redirectAttributes) throws InterruptedException {
         return javascriptRedirect(redirectId, redirectsNumber, timeoutMillis, "windowLocationHref");
+    }
+
+    @RequestMapping(value = "/redirect/window/location/replace", method = RequestMethod.GET)
+    public ModelAndView windowLocationReplace(@RequestParam(value = "redirectId", required = false) Integer redirectId,
+                                              @RequestParam(value = "redirectsNumber") int redirectsNumber,
+                                              @RequestParam(value = "timeoutMillis", required = false) Integer timeoutMillis,
+                                              RedirectAttributes redirectAttributes) throws InterruptedException {
+        return javascriptRedirect(redirectId, redirectsNumber, timeoutMillis, "windowLocationReplace");
     }
 
     @RequestMapping(value = "/redirect/document/location", method = RequestMethod.GET)
@@ -45,9 +53,9 @@ public class RedirectController {
 
     @RequestMapping(value = "/redirect/document/location/href", method = RequestMethod.GET)
     public ModelAndView documentLocationHref(@RequestParam(value = "redirectId", required = false) Integer redirectId,
-                                         @RequestParam(value = "redirectsNumber") int redirectsNumber,
-                                         @RequestParam(value = "timeoutMillis", required = false) Integer timeoutMillis,
-                                         RedirectAttributes redirectAttributes) throws InterruptedException {
+                                             @RequestParam(value = "redirectsNumber") int redirectsNumber,
+                                             @RequestParam(value = "timeoutMillis", required = false) Integer timeoutMillis,
+                                             RedirectAttributes redirectAttributes) throws InterruptedException {
         return javascriptRedirect(redirectId, redirectsNumber, timeoutMillis, "documentLocationHref");
     }
 
