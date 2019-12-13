@@ -18,8 +18,13 @@ description = """"""
 
 jar {
     enabled = true
-    baseName = 'web-server-mock'
-    version =  '1.0-SNAPSHOT'
+    archiveBaseName = 'web-server-mock'
+    archiveVersion =  '1.0-SNAPSHOT'
+    manifest {
+        attributes(
+                'Main-Class': 'ru.ok.antispam.webservermock.Application'
+        )
+    }
 }
 
 sourceCompatibility = 1.8
@@ -46,5 +51,5 @@ dependencies {
 }
 
 task stage {
-    dependsOn bootJar
+    dependsOn build
 }
