@@ -1,8 +1,6 @@
 build
 .idea
-build.gradle
 out/
-settings.gradle
 target/
 web-server-mock.iml
 /.gradle/
