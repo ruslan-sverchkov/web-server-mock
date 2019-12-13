@@ -59,6 +59,14 @@ public class RedirectController {
         return javascriptRedirect(redirectId, redirectsNumber, timeoutMillis, "documentLocationHref");
     }
 
+    @RequestMapping(value = "/redirect/document/location/replace", method = RequestMethod.GET)
+    public ModelAndView documentLocationReplace(@RequestParam(value = "redirectId", required = false) Integer redirectId,
+                                                @RequestParam(value = "redirectsNumber") int redirectsNumber,
+                                                @RequestParam(value = "timeoutMillis", required = false) Integer timeoutMillis,
+                                                RedirectAttributes redirectAttributes) throws InterruptedException {
+        return javascriptRedirect(redirectId, redirectsNumber, timeoutMillis, "documentLocationReplace");
+    }
+
     private ModelAndView javascriptRedirect(Integer redirectId,
                                             int redirectsNumber,
                                             Integer timeoutMillis,

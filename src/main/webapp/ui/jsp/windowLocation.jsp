@@ -7,11 +7,11 @@
 <script>
     <c:choose>
     <c:when test="${empty timeoutMillis}">
-    window.location = "/redirect/windowLocation/?redirectsNumber=${redirectsNumber}&redirectId=${redirectId}";
+    window.location = "/redirect/window/location/?redirectsNumber=${redirectsNumber}&redirectId=${redirectId}";
     </c:when>
     <c:otherwise>
     window.setTimeout(function () {
-        window.location = "/redirect/windowLocation/?redirectsNumber=${redirectsNumber}&timeoutMillis=${timeoutMillis}&redirectId=${redirectId}";
+        window.location = "/redirect/window/location/?redirectsNumber=${redirectsNumber}&timeoutMillis=${timeoutMillis}&redirectId=${redirectId}";
     }, ${timeoutMillis});
     </c:otherwise>
     </c:choose>
