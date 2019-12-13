@@ -24,7 +24,7 @@ public class RedirectController {
     @RequestMapping(value = "/redirect/javascript", method = RequestMethod.GET)
     public ModelAndView performJavascriptRedirect(@RequestParam(value = "redirectId", required = false) Integer redirectId,
                                                   @RequestParam(value = "redirectsNumber") int redirectsNumber,
-                                                  @RequestParam(value = "redirectId", required = false) Integer timeoutMillis,
+                                                  @RequestParam(value = "timeoutMillis", required = false) Integer timeoutMillis,
                                                   RedirectAttributes redirectAttributes) throws InterruptedException {
         if (redirectId == null) {
             redirectId = 0;
