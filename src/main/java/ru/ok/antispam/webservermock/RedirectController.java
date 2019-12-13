@@ -21,7 +21,7 @@ public class RedirectController {
         return model;
     }
 
-    @RequestMapping(value = "/redirect/javascript", method = RequestMethod.GET)
+    @RequestMapping(value = "/redirect/windowLocation", method = RequestMethod.GET)
     public ModelAndView performJavascriptRedirect(@RequestParam(value = "redirectId", required = false) Integer redirectId,
                                                   @RequestParam(value = "redirectsNumber") int redirectsNumber,
                                                   @RequestParam(value = "timeoutMillis", required = false) Integer timeoutMillis,
