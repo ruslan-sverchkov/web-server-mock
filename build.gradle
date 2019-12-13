@@ -44,3 +44,11 @@ dependencies {
 
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
+
+task stage {
+    dependsOn build
+}
+
+jar {
+    baseName = 'web-server-mock'
+}
