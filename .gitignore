@@ -1,6 +1,9 @@
 build
+.gradle
 .idea
-out/
-target/
-web-server-mock.iml
-/.gradle/
+out
+target
+*.iml
+*.ipr
+*.iws
+.DS_Store
