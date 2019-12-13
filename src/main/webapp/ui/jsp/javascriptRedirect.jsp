@@ -4,7 +4,7 @@
     <title>Web Server Mock</title>
 </head>
 <script>
-    window.setTimeout(function(){ window.location = "/redirect/javascript/?redirectsNumber=${redirectsNumber}&redirectId=${redirectId}"; }, 10);
+    window.setTimeout(function(){ window.location = "/redirect/javascript/?redirectsNumber=${redirectsNumber}&redirectId=${redirectId}"; }, 50);
     #window.location = "/redirect/javascript/?redirectsNumber=${redirectsNumber}&redirectId=${redirectId}";
 </script>
 <div>
