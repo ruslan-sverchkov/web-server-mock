@@ -19,10 +19,10 @@ public class RedirectController {
         return model;
     }
 
-    @RequestMapping(value = "/iframe", method = RequestMethod.GET)
+    @RequestMapping(value = "/lolkekcheburek", method = RequestMethod.GET)
     public ModelAndView iframe() {
         ModelAndView model = new ModelAndView();
-        model.setViewName("iframe");
+        model.setViewName("lolkekcheburek");
         return model;
     }
 
@@ -30,65 +30,75 @@ public class RedirectController {
     public ModelAndView windowLocation(@RequestParam(value = "redirectId", required = false) Integer redirectId,
                                        @RequestParam(value = "redirectsNumber") int redirectsNumber,
                                        @RequestParam(value = "timeoutMillis", required = false) Integer timeoutMillis,
+                                       @RequestParam(value = "finalView", required = false) String finalView,
                                        RedirectAttributes redirectAttributes) throws InterruptedException {
-        return javascriptRedirect(redirectId, redirectsNumber, timeoutMillis, "windowLocation");
+        return javascriptRedirect(redirectId, redirectsNumber, timeoutMillis, "windowLocation", finalView);
     }
 
     @RequestMapping(value = "/redirect/window/location/href", method = RequestMethod.GET)
     public ModelAndView windowLocationHref(@RequestParam(value = "redirectId", required = false) Integer redirectId,
                                            @RequestParam(value = "redirectsNumber") int redirectsNumber,
                                            @RequestParam(value = "timeoutMillis", required = false) Integer timeoutMillis,
+                                           @RequestParam(value = "finalView", required = false) String finalView,
                                            RedirectAttributes redirectAttributes) throws InterruptedException {
-        return javascriptRedirect(redirectId, redirectsNumber, timeoutMillis, "windowLocationHref");
+        return javascriptRedirect(redirectId, redirectsNumber, timeoutMillis, "windowLocationHref", finalView);
     }
 
     @RequestMapping(value = "/redirect/window/location/replace", method = RequestMethod.GET)
     public ModelAndView windowLocationReplace(@RequestParam(value = "redirectId", required = false) Integer redirectId,
                                               @RequestParam(value = "redirectsNumber") int redirectsNumber,
                                               @RequestParam(value = "timeoutMillis", required = false) Integer timeoutMillis,
+                                              @RequestParam(value = "finalView", required = false) String finalView,
                                               RedirectAttributes redirectAttributes) throws InterruptedException {
-        return javascriptRedirect(redirectId, redirectsNumber, timeoutMillis, "windowLocationReplace");
+        return javascriptRedirect(redirectId, redirectsNumber, timeoutMillis, "windowLocationReplace", finalView);
     }
 
     @RequestMapping(value = "/redirect/document/location", method = RequestMethod.GET)
     public ModelAndView documentLocation(@RequestParam(value = "redirectId", required = false) Integer redirectId,
                                          @RequestParam(value = "redirectsNumber") int redirectsNumber,
                                          @RequestParam(value = "timeoutMillis", required = false) Integer timeoutMillis,
+                                         @RequestParam(value = "finalView", required = false) String finalView,
                                          RedirectAttributes redirectAttributes) throws InterruptedException {
-        return javascriptRedirect(redirectId, redirectsNumber, timeoutMillis, "documentLocation");
+        return javascriptRedirect(redirectId, redirectsNumber, timeoutMillis, "documentLocation", finalView);
     }
 
     @RequestMapping(value = "/redirect/document/location/href", method = RequestMethod.GET)
     public ModelAndView documentLocationHref(@RequestParam(value = "redirectId", required = false) Integer redirectId,
                                              @RequestParam(value = "redirectsNumber") int redirectsNumber,
                                              @RequestParam(value = "timeoutMillis", required = false) Integer timeoutMillis,
+                                             @RequestParam(value = "finalView", required = false) String finalView,
                                              RedirectAttributes redirectAttributes) throws InterruptedException {
-        return javascriptRedirect(redirectId, redirectsNumber, timeoutMillis, "documentLocationHref");
+        return javascriptRedirect(redirectId, redirectsNumber, timeoutMillis, "documentLocationHref", finalView);
     }
 
     @RequestMapping(value = "/redirect/document/location/replace", method = RequestMethod.GET)
     public ModelAndView documentLocationReplace(@RequestParam(value = "redirectId", required = false) Integer redirectId,
                                                 @RequestParam(value = "redirectsNumber") int redirectsNumber,
                                                 @RequestParam(value = "timeoutMillis", required = false) Integer timeoutMillis,
+                                                @RequestParam(value = "finalView", required = false) String finalView,
                                                 RedirectAttributes redirectAttributes) throws InterruptedException {
-        return javascriptRedirect(redirectId, redirectsNumber, timeoutMillis, "documentLocationReplace");
+        return javascriptRedirect(redirectId, redirectsNumber, timeoutMillis, "documentLocationReplace", finalView);
     }
 
     private ModelAndView javascriptRedirect(Integer redirectId,
                                             int redirectsNumber,
                                             Integer timeoutMillis,
-                                            String documentLocation) {
+                                            String redirectView,
+                                            String finalView) {
         if (redirectId == null) {
             redirectId = 0;
         }
         if (redirectId < redirectsNumber) {
-            ModelAndView modelAndView = new ModelAndView(documentLocation);
+            ModelAndView modelAndView = new ModelAndView(redirectView);
             modelAndView.addObject("redirectsNumber", redirectsNumber);
             modelAndView.addObject("redirectId", redirectId + 1);
             modelAndView.addObject("timeoutMillis", timeoutMillis);
             return modelAndView;
         }
-        ModelAndView modelAndView = new ModelAndView("redirectCompleted");
+        if (finalView == null) {
+            finalView = "redirectCompleted";
+        }
+        ModelAndView modelAndView = new ModelAndView(finalView);
         modelAndView.addObject("redirects", redirectsNumber);
         return modelAndView;
     }
