@@ -26,6 +26,16 @@ public class RedirectController {
         return model;
     }
 
+    @RequestMapping(value = "/meta", method = RequestMethod.GET)
+    public ModelAndView meta(@RequestParam(value = "timeoutSeconds") int timeoutSeconds,
+                             @RequestParam(value = "redirectUrl", required = false) String redirectUrl) {
+        ModelAndView model = new ModelAndView();
+        model.setViewName("meta");
+        model.addObject("timeoutSeconds", timeoutSeconds);
+        model.addObject("redirectUrl", redirectUrl);
+        return model;
+    }
+
     @RequestMapping(value = "/redirect/window/location", method = RequestMethod.GET)
     public ModelAndView windowLocation(@RequestParam(value = "redirectId", required = false) Integer redirectId,
                                        @RequestParam(value = "redirectsNumber") int redirectsNumber,
