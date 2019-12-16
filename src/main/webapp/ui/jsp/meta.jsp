@@ -3,12 +3,16 @@
 <head>
     <title>Web Server Mock</title>
     <c:choose>
-        <c:when test="${not empty redirectUrl}">
-            <meta http-equiv="refresh" content="${timeoutSeconds};URL=${redirectUrl}">
-        </c:when>
-        <c:otherwise>
-            <meta http-equiv="refresh" content="${timeoutSeconds}">
-        </c:otherwise>
+        <c:if test="${refresh}">
+            <c:choose>
+                <c:when test="${not empty redirectUrl}">
+                    <meta http-equiv="refresh" content="${timeoutSeconds};URL=${redirectUrl}">
+                </c:when>
+                <c:otherwise>
+                    <meta http-equiv="refresh" content="${timeoutSeconds}">
+                </c:otherwise>
+            </c:choose>
+        </c:if>
     </c:choose>
 </head>
 <body>

@@ -27,10 +27,12 @@ public class RedirectController {
     }
 
     @RequestMapping(value = "/meta", method = RequestMethod.GET)
-    public ModelAndView meta(@RequestParam(value = "timeoutSeconds") int timeoutSeconds,
+    public ModelAndView meta(@RequestParam(value = "refresh", required = false) Boolean refresh,
+                             @RequestParam(value = "timeoutSeconds") int timeoutSeconds,
                              @RequestParam(value = "redirectUrl", required = false) String redirectUrl) {
         ModelAndView model = new ModelAndView();
         model.setViewName("meta");
+        model.addObject("refresh", refresh);
         model.addObject("timeoutSeconds", timeoutSeconds);
         model.addObject("redirectUrl", redirectUrl);
         return model;
