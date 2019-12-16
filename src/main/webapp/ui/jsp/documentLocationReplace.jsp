@@ -7,11 +7,11 @@
 <script>
     <c:choose>
     <c:when test="${empty timeoutMillis}">
-    document.location.replace("/redirect/document/location/replace/?redirectsNumber=${redirectsNumber}&redirectId=${redirectId}");
+    document.location.replace("/redirect/document/location/replace/?redirectsNumber=${redirectsNumber}&redirectId=${redirectId}&finalView=${finalView}");
     </c:when>
     <c:otherwise>
     window.setTimeout(function () {
-        document.location.replace("/redirect/document/location/replace/?redirectsNumber=${redirectsNumber}&timeoutMillis=${timeoutMillis}&redirectId=${redirectId}");
+        document.location.replace("/redirect/document/location/replace/?redirectsNumber=${redirectsNumber}&timeoutMillis=${timeoutMillis}&redirectId=${redirectId}&finalView=${finalView}");
     }, ${timeoutMillis});
     </c:otherwise>
     </c:choose>

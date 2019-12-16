@@ -93,6 +93,7 @@ public class RedirectController {
             modelAndView.addObject("redirectsNumber", redirectsNumber);
             modelAndView.addObject("redirectId", redirectId + 1);
             modelAndView.addObject("timeoutMillis", timeoutMillis);
+            modelAndView.addObject("finalView", finalView);
             return modelAndView;
         }
         if (finalView == null) {
@@ -106,6 +107,7 @@ public class RedirectController {
     @RequestMapping(value = "/redirect/server", method = RequestMethod.GET)
     public ModelAndView performServerRedirect(@RequestParam(value = "redirectId", required = false) Integer redirectId,
                                               @RequestParam(value = "redirectsNumber") int redirectsNumber,
+                                              @RequestParam(value = "finalView", required = false) String finalView,
                                               RedirectAttributes redirectAttributes,
                                               HttpServletRequest request) {
         if (redirectId == null) {
@@ -114,9 +116,13 @@ public class RedirectController {
         if (redirectId < redirectsNumber) {
             redirectAttributes.addAttribute("redirectsNumber", redirectsNumber);
             redirectAttributes.addAttribute("redirectId", redirectId + 1);
+            redirectAttributes.addAttribute("finalView", finalView);
             return new ModelAndView("redirect:/redirect/server");
         } else {
-            ModelAndView modelAndView = new ModelAndView("redirectCompleted");
+            if (finalView == null) {
+                finalView = "redirectCompleted";
+            }
+            ModelAndView modelAndView = new ModelAndView(finalView);
             modelAndView.addObject("redirects", redirectsNumber);
             return modelAndView;
         }
