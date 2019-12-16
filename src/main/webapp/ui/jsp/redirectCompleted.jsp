@@ -11,7 +11,7 @@
     ${redirects} redirects have been successfully performed
 </div>
 <div>
-    <iframe src="https://www.w3schools.com"></iframe>
+    <iframe src="/iframe"></iframe>
 </div>
 </body>
 </html>

@@ -19,6 +19,13 @@ public class RedirectController {
         return model;
     }
 
+    @RequestMapping(value = "/iframe", method = RequestMethod.GET)
+    public ModelAndView iframe() {
+        ModelAndView model = new ModelAndView();
+        model.setViewName("iframe");
+        return model;
+    }
+
     @RequestMapping(value = "/redirect/window/location", method = RequestMethod.GET)
     public ModelAndView windowLocation(@RequestParam(value = "redirectId", required = false) Integer redirectId,
                                        @RequestParam(value = "redirectsNumber") int redirectsNumber,
