@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Web Server Mock</title>
-    <c:if test="${refresh}">
+    <c:if test="${refresh eq true}">
         <c:choose>
             <c:when test="${not empty redirectUrl}">
                 <meta http-equiv="refresh" content="${timeoutSeconds};URL=${redirectUrl}">
