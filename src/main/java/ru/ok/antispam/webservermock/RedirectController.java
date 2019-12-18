@@ -26,6 +26,13 @@ public class RedirectController {
         return model;
     }
 
+    @RequestMapping(value = "/iframe", method = RequestMethod.GET)
+    public ModelAndView iframe() {
+        ModelAndView model = new ModelAndView();
+        model.setViewName("iframe");
+        return model;
+    }
+
     @RequestMapping(value = "/meta", method = RequestMethod.GET)
     public ModelAndView meta(@RequestParam(value = "refresh", required = false) Boolean refresh,
                              @RequestParam(value = "timeoutSeconds") int timeoutSeconds,
