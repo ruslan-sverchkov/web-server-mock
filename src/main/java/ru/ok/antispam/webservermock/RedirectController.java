@@ -20,7 +20,7 @@ public class RedirectController {
     }
 
     @RequestMapping(value = "/lolkekcheburek", method = RequestMethod.GET)
-    public ModelAndView iframe() {
+    public ModelAndView lolkekcheburek() {
         ModelAndView model = new ModelAndView();
         model.setViewName("lolkekcheburek");
         return model;
