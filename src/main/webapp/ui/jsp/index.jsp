@@ -5,12 +5,15 @@
 </head>
 <body>
 <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('main')
+            .appendChild(document.createTextNode(navigator.languages));
+    });
+</script>
 <div>
     Hello, World!
-    <div id="os"></div>
-    <script>
-        document.getElementById("webdriver").appendChild(document.createTextNode(navigator.webdriver));
-    </script>
+    <div id="main"/>
 </div>
 </body>
 </html>
