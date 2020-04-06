@@ -9,7 +9,7 @@
     Hello, World!
     <div id="os"></div>
     <script>
-        document.getElementById("os").appendChild(document.createTextNode(navigator.toString()));
+        document.getElementById("os").appendChild(document.createTextNode(navigator.platform));
     </script>
 </div>
 </body>
