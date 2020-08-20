@@ -8,7 +8,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('main')
-            .appendChild(document.createTextNode(navigator.languages));
+            .appendChild(document.createTextNode(navigator.plugins.length));
     });
 </script>
 <div>

