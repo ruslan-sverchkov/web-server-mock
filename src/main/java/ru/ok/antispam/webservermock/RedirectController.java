@@ -136,6 +136,7 @@ public class RedirectController {
         if (redirectId < redirectsNumber) {
             redirectAttributes.addAttribute("redirectsNumber", redirectsNumber);
             redirectAttributes.addAttribute("redirectId", redirectId + 1);
+            redirectAttributes.addAttribute("timeoutMillis", timeoutMillis);
             redirectAttributes.addAttribute("finalView", finalView);
             return new ModelAndView("redirect:/redirect/server");
         }
