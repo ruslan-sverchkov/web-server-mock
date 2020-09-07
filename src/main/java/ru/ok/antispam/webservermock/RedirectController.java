@@ -20,7 +20,8 @@ public class RedirectController {
     }
 
     @RequestMapping(value = "/lolkekcheburek", method = RequestMethod.GET)
-    public ModelAndView lolkekcheburek() {
+    public ModelAndView lolkekcheburek() throws InterruptedException {
+        Thread.sleep(5000);
         ModelAndView model = new ModelAndView();
         model.setViewName("lolkekcheburek");
         return model;
