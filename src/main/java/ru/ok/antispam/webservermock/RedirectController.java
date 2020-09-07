@@ -20,8 +20,7 @@ public class RedirectController {
     }
 
     @RequestMapping(value = "/lolkekcheburek", method = RequestMethod.GET)
-    public ModelAndView lolkekcheburek() throws InterruptedException {
-        Thread.sleep(5000);
+    public ModelAndView lolkekcheburek() {
         ModelAndView model = new ModelAndView();
         model.setViewName("lolkekcheburek");
         return model;
@@ -96,7 +95,7 @@ public class RedirectController {
                                                 @RequestParam(value = "redirectsNumber") int redirectsNumber,
                                                 @RequestParam(value = "timeoutMillis", required = false) Integer timeoutMillis,
                                                 @RequestParam(value = "finalView", required = false) String finalView,
-                                                RedirectAttributes redirectAttributes) throws InterruptedException {
+                                                RedirectAttributes redirectAttributes) {
         return javascriptRedirect(redirectId, redirectsNumber, timeoutMillis, "documentLocationReplace", finalView);
     }
 
@@ -127,9 +126,10 @@ public class RedirectController {
     @RequestMapping(value = "/redirect/server", method = RequestMethod.GET)
     public ModelAndView performServerRedirect(@RequestParam(value = "redirectId", required = false) Integer redirectId,
                                               @RequestParam(value = "redirectsNumber") int redirectsNumber,
+                                              @RequestParam(value = "timeoutMillis", required = false) Integer timeoutMillis,
                                               @RequestParam(value = "finalView", required = false) String finalView,
                                               RedirectAttributes redirectAttributes,
-                                              HttpServletRequest request) {
+                                              HttpServletRequest request) throws InterruptedException {
         if (redirectId == null) {
             redirectId = 0;
         }
@@ -138,14 +138,16 @@ public class RedirectController {
             redirectAttributes.addAttribute("redirectId", redirectId + 1);
             redirectAttributes.addAttribute("finalView", finalView);
             return new ModelAndView("redirect:/redirect/server");
-        } else {
-            if (finalView == null) {
-                finalView = "redirectCompleted";
-            }
-            ModelAndView modelAndView = new ModelAndView(finalView);
-            modelAndView.addObject("redirects", redirectsNumber);
-            return modelAndView;
         }
+        if (finalView == null) {
+            finalView = "redirectCompleted";
+        }
+        if (timeoutMillis != null) {
+            Thread.sleep(timeoutMillis);
+        }
+        ModelAndView modelAndView = new ModelAndView(finalView);
+        modelAndView.addObject("redirects", redirectsNumber);
+        return modelAndView;
     }
 
 }
